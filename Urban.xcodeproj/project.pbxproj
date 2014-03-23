@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9624DBA618DF48A0000CC1B6 /* UrbanData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624DBA518DF48A0000CC1B6 /* UrbanData.m */; };
+		9624DBA918DF48B4000CC1B6 /* UrbanTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624DBA818DF48B4000CC1B6 /* UrbanTerm.m */; };
 		965DAD9218DC71310024CB50 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965DAD9118DC71310024CB50 /* Foundation.framework */; };
 		965DAD9418DC71310024CB50 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965DAD9318DC71310024CB50 /* CoreGraphics.framework */; };
 		965DAD9618DC71310024CB50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965DAD9518DC71310024CB50 /* UIKit.framework */; };
@@ -38,6 +40,10 @@
 /* Begin PBXFileReference section */
 		661AEB8E0DC941D4BE12D63C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		71293C05D2894926B0AF2A4C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		9624DBA418DF48A0000CC1B6 /* UrbanData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UrbanData.h; path = Urban/UrbanData.h; sourceTree = "<group>"; };
+		9624DBA518DF48A0000CC1B6 /* UrbanData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UrbanData.m; path = Urban/UrbanData.m; sourceTree = "<group>"; };
+		9624DBA718DF48B4000CC1B6 /* UrbanTerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UrbanTerm.h; path = Urban/UrbanTerm.h; sourceTree = "<group>"; };
+		9624DBA818DF48B4000CC1B6 /* UrbanTerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UrbanTerm.m; path = Urban/UrbanTerm.m; sourceTree = "<group>"; };
 		965DAD8E18DC71310024CB50 /* Urban.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Urban.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		965DAD9118DC71310024CB50 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		965DAD9318DC71310024CB50 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -88,6 +94,10 @@
 		965DAD8518DC71310024CB50 = {
 			isa = PBXGroup;
 			children = (
+				9624DBA418DF48A0000CC1B6 /* UrbanData.h */,
+				9624DBA518DF48A0000CC1B6 /* UrbanData.m */,
+				9624DBA718DF48B4000CC1B6 /* UrbanTerm.h */,
+				9624DBA818DF48B4000CC1B6 /* UrbanTerm.m */,
 				965DAD9718DC71310024CB50 /* Urban */,
 				965DADB618DC71310024CB50 /* UrbanTests */,
 				965DAD9018DC71310024CB50 /* Frameworks */,
@@ -295,6 +305,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9624DBA918DF48B4000CC1B6 /* UrbanTerm.m in Sources */,
+				9624DBA618DF48A0000CC1B6 /* UrbanData.m in Sources */,
 				965DAD9E18DC71310024CB50 /* main.m in Sources */,
 				965DADA818DC71310024CB50 /* JCViewController.m in Sources */,
 				965DADA218DC71310024CB50 /* JCAppDelegate.m in Sources */,

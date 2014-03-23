@@ -7,6 +7,7 @@
 //
 
 #import "JCViewController.h"
+#import "UrbanData.h"
 
 @interface JCViewController () <UITextFieldDelegate>
 @property(nonatomic, strong) NSString *urbanEndpoint;
@@ -28,8 +29,9 @@
 
     self.searchResultField.text = @"";
     self.searchResultField.editable = NO;
+    self.searchResultField.scrollEnabled = YES;
     
-    self.urbanEndpoint = @"http://api.urbandictionary.com/v0";
+    self.urbanEndpoint = @"http://api.urbandictionary.com/v0/";
     self.thumbsUp.hidden = YES;
     self.thumbsDn.hidden = YES;
 }
@@ -54,58 +56,58 @@
 - (void)searchUrban:(NSString *)searchTerm {
     [self.searchTermField setEnabled:NO];
 
-    NSString *resource = [NSString stringWithFormat:@"%@/define?term=%@", self.urbanEndpoint, searchTerm];
-    NSURL *url = [NSURL URLWithString:[resource stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURL *baseUrl = [NSURL URLWithString:self.urbanEndpoint];
+    NSDictionary *parameters = @{@"term" : searchTerm};
     
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseUrl];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *data = (NSDictionary *)responseObject;
+    [manager GET:@"define" parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+        self.searchTermField.enabled = YES;
         
-        BOOL foundDefinition = NO;
+        NSDictionary *jsonData = (NSDictionary *)responseObject;
+        NSError *err = nil;
+        UrbanData * data = [[UrbanData alloc] initWithDictionary:jsonData error:&err];
         
-        if ([data objectForKey:@"list"]) {
-            NSArray *entries = data[@"list"];
-            if (entries.count > 0) {
-                NSDictionary * entry = entries[0];
-                if ([entry objectForKey:@"definition"]) {
-                    self.searchResultField.text = entry[@"definition"];
-                    foundDefinition = YES;
-                }
-               
-                if ([entry objectForKey:@"example"]) {
-                    self.searchResultField.text = [NSString stringWithFormat:@"%@ \n\n[Example]\n%@", self.searchResultField.text, entry[@"example"]];
-                }
-                
-                if ([entry objectForKey:@"thumbs_up"]) {
-                    self.thumbsUp.hidden = NO;
-                    self.thumbsUp.text = [NSString stringWithFormat:@"%@", entry[@"thumbs_up"]];
-                }
-                
-                if ([entry objectForKey:@"thumbs_down"]) {
-                    self.thumbsDn.hidden = NO;
-                    self.thumbsDn.text = [NSString stringWithFormat:@"%@", entry[@"thumbs_down"]];
-                }
-            }
+        if (!err && data.list.count > 0) {
+            UrbanTerm *term = [data.list firstObject];
+            
+            NSString *text = [NSString stringWithFormat:@"%@ \n\n[Example]\n%@",
+                                     term.definition,term.example];
+            NSMutableAttributedString *searchResult = [[NSMutableAttributedString alloc] initWithString:text];
+            [searchResult addAttribute:NSFontAttributeName
+                                value:[UIFont systemFontOfSize:14]
+                                range:NSMakeRange(0, text.length)];
+            
+            [self.searchResultField setAttributedText:searchResult];
+            
+            self.thumbsUp.hidden = self.thumbsDn.hidden = NO;
+            
+            self.thumbsUp.text = [NSString stringWithFormat:@"%d", term.thumbs_up];
+            self.thumbsDn.text = [NSString stringWithFormat:@"%d", term.thumbs_down];
         }
-        
-        if (!foundDefinition) {
-            self.searchResultField.text = @"";
+        else {
+            NSMutableAttributedString *feedback = [[NSMutableAttributedString alloc] initWithString:@"Opps, not found :("];
+            [feedback addAttribute:NSFontAttributeName
+                            value:[UIFont systemFontOfSize:24]
+                            range:NSMakeRange(0, feedback.length)];
+            
+            [feedback addAttribute:NSForegroundColorAttributeName
+                             value:[UIColor redColor]
+                             range: NSMakeRange(0, feedback.length)];
+            
+            [self.searchResultField setAttributedText:feedback];
             self.thumbsUp.hidden = YES;
             self.thumbsDn.hidden = YES;
         }
         
-        [self.searchTermField setEnabled:YES];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        self.searchTermField.enabled = YES;
         self.searchResultField.text = @"";
-        self.thumbsUp.text = @"up";
-        self.thumbsDn.text = @"dn";
         
-        [self.searchTermField setEnabled:YES];
+        self.thumbsUp.hidden = YES;
+        self.thumbsDn.hidden = YES;
     }];
-    
-    [operation start];
 }
 @end

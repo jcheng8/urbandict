@@ -7,12 +7,14 @@
 //
 
 #import "JCAppDelegate.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation JCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     return YES;
 }
 							
