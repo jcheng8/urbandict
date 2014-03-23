@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9624DBA618DF48A0000CC1B6 /* UrbanData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624DBA518DF48A0000CC1B6 /* UrbanData.m */; };
 		9624DBA918DF48B4000CC1B6 /* UrbanTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 9624DBA818DF48B4000CC1B6 /* UrbanTerm.m */; };
+		9626758D18DFA29400D2EC6F /* thumbs-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 9626758C18DFA29400D2EC6F /* thumbs-up.png */; };
+		9626758F18DFA29A00D2EC6F /* thumbs-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 9626758E18DFA29A00D2EC6F /* thumbs-down.png */; };
 		965DAD9218DC71310024CB50 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965DAD9118DC71310024CB50 /* Foundation.framework */; };
 		965DAD9418DC71310024CB50 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965DAD9318DC71310024CB50 /* CoreGraphics.framework */; };
 		965DAD9618DC71310024CB50 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 965DAD9518DC71310024CB50 /* UIKit.framework */; };
@@ -44,6 +46,8 @@
 		9624DBA518DF48A0000CC1B6 /* UrbanData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UrbanData.m; path = Urban/UrbanData.m; sourceTree = "<group>"; };
 		9624DBA718DF48B4000CC1B6 /* UrbanTerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UrbanTerm.h; path = Urban/UrbanTerm.h; sourceTree = "<group>"; };
 		9624DBA818DF48B4000CC1B6 /* UrbanTerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UrbanTerm.m; path = Urban/UrbanTerm.m; sourceTree = "<group>"; };
+		9626758C18DFA29400D2EC6F /* thumbs-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbs-up.png"; sourceTree = "<group>"; };
+		9626758E18DFA29A00D2EC6F /* thumbs-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbs-down.png"; sourceTree = "<group>"; };
 		965DAD8E18DC71310024CB50 /* Urban.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Urban.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		965DAD9118DC71310024CB50 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		965DAD9318DC71310024CB50 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -144,7 +148,9 @@
 		965DAD9818DC71310024CB50 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9626758C18DFA29400D2EC6F /* thumbs-up.png */,
 				965DADC618DD0DCF0024CB50 /* UD-logo.jpg */,
+				9626758E18DFA29A00D2EC6F /* thumbs-down.png */,
 				965DAD9918DC71310024CB50 /* Urban-Info.plist */,
 				965DAD9A18DC71310024CB50 /* InfoPlist.strings */,
 				965DAD9D18DC71310024CB50 /* main.m */,
@@ -254,6 +260,8 @@
 				965DADC718DD0DCF0024CB50 /* UD-logo.jpg in Resources */,
 				965DAD9C18DC71310024CB50 /* InfoPlist.strings in Resources */,
 				965DADA518DC71310024CB50 /* Main.storyboard in Resources */,
+				9626758F18DFA29A00D2EC6F /* thumbs-down.png in Resources */,
+				9626758D18DFA29400D2EC6F /* thumbs-up.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +446,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Urban/Urban-Prefix.pch";
 				INFOPLIST_FILE = "Urban/Urban-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -452,6 +461,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Urban/Urban-Prefix.pch";
 				INFOPLIST_FILE = "Urban/Urban-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -34,6 +34,17 @@
     self.urbanEndpoint = @"http://api.urbandictionary.com/v0/";
     self.thumbsUp.hidden = YES;
     self.thumbsDn.hidden = YES;
+    
+    UIImageView *upVoteView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"thumbs-up.png"]];
+    [self.thumbsUp addSubview:upVoteView];
+    
+    UIImageView *downVoteView =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"thumbs-down.png"]];
+    [self.thumbsDn addSubview:downVoteView];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,6 +61,17 @@
     if (searchTerm.length > 0) {
         [self searchUrban:searchTerm];
     }
+    return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    if (textField == self.searchTermField) {
+        self.searchResultField.text = @"";
+        self.thumbsUp.hidden = YES;
+        self.thumbsDn.hidden = YES;
+    }
+
     return YES;
 }
 
@@ -80,6 +102,8 @@
                                 range:NSMakeRange(0, text.length)];
             
             [self.searchResultField setAttributedText:searchResult];
+            // scroll to the top
+            [self.searchResultField setContentOffset:CGPointMake(0, 0)];
             
             self.thumbsUp.hidden = self.thumbsDn.hidden = NO;
             
@@ -97,6 +121,8 @@
                              range: NSMakeRange(0, feedback.length)];
             
             [self.searchResultField setAttributedText:feedback];
+            // scroll to the top
+            [self.searchResultField setContentOffset:CGPointMake(0, 0)];
             self.thumbsUp.hidden = YES;
             self.thumbsDn.hidden = YES;
         }
