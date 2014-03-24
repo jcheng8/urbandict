@@ -1,4 +1,4 @@
-## # Simple Unofficial Urban Dictionary App
+##  Simple Unofficial Urban Dictionary App
 
 ##### Features
 
